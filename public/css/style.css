@@ -1,0 +1,29 @@
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+    position: fixed;
+    right: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+h1,
+h2,
+h3 {
+    color: #ffffff;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+#big-headline,
+#mid-headline-1, 
+#mid-headline-2, 
+#mid-headline-3, 
+#mid-headline-4, 
+#mid-headline-5, 
+#mid-headline-6 {
+    margin-bottom: 50px;
+}
+
