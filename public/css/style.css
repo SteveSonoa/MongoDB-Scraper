@@ -5,6 +5,7 @@
     top: 0;
     min-width: 100%;
     min-height: 100%;
+    z-index: -1;
 }
 
 h1,
@@ -15,6 +16,12 @@ h3 {
     margin: 0px;
     padding: 0px;
     margin-bottom: 20px;
+    text-shadow:
+       1px 1px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
 }
 
 #big-headline,
