@@ -110,4 +110,15 @@ module.exports = function(app, path, db) {
 	    res.end();
 	  });
 	});
+
+	app.delete("/api/articles/:id", function(req, res) {
+		db.Note.remove({ _id: req.body.noteId })
+		.then(function(dbNote) {
+			db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: {new: false} });
+			res.end();
+		})
+		.catch(function(err) {
+			res.end();
+		});
+	});
 }

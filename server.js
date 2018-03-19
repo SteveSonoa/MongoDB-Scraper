@@ -5,8 +5,6 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var path = require("path");
 
-
-
 // Require all models
 var db = require("./models");
 
@@ -35,8 +33,10 @@ mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
+// Load API routing
 require('./controllers/apiRoutes.js')(app, path, db);
 
+// If app changes from direct file names, utilize HTML routing
 // app.get("/article/:id", function(req,res) {
 //   res.sendFile(path.join(__dirname, "./public/article.html", req.params.id));
 // });
