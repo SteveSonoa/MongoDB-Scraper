@@ -36,12 +36,15 @@ $.getJSON("/api/articles/" + thisId, function(data) {
       '<div class="panel panel-default">'
     +   '<div class="panel-body">'
     +     '<p>' + data.note.body + '</p>'
-    +   '<br><button class="btn btn-danger active btnDeleteComment" data-id="' + data.note._id + '">Delete This Comment</button>'
+    +     '<br><button class="btn btn-danger active btnDeleteComment" data-id="' + data.note._id + '">Delete This Comment</button>'
     +   '</div>'
     + '</div>'
     );
     // Add the existing note to the textarea for editing
     $("#commentText").val(data.note.body);
+  }
+  else {
+    $("#comments").append('<h3 class="text-center">You have not written a comment yet.</h3>');
   }
 });
 
