@@ -14,10 +14,18 @@ const thisId = getQueryVariable("id");
 console.log(thisId);
 
 // Grab the articles as a json
-$.getJSON("/articles/" + thisId, function(data) {
+$.getJSON("/api/articles/" + thisId, function(data) {
 
   $("#image").html('<a href="' + data.link + '" target="_blank"><img src="' + data.image + '" class="img img-responsive" alt="' + data.title + '" /></a>');
   $("#headline").html('<a href="' + data.link + '" target="_blank"><h2>' + data.title + '</h2></a>');
+
+  // Determine which favorite button (add or remove) is appropriate to display
+  if(data.favorite) {
+    $("#btnFav").html('<button class="btn btn-danger active pull-right" role="button" data-id="' + thisId + '" data-curState="true">Remove From Favorites</button>');
+  }
+  else {
+    $("#btnFav").html('<button class="btn btn-success active pull-right" role="button" data-id="' + thisId + '" data-curState="false">Add To My Favorites</button>');
+  }
 });
 
 
@@ -80,4 +88,30 @@ $(document).on("click", "#savenote", function() {
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+});
+
+// When you click the favorites toggle button
+$(document).on("click", ".pull-right", function() {
+  console.log("button clicked");
+  let toggle = true;
+  if ($(this).attr("data-curState") === "true") {
+    toggle = false;
+  }
+
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "PUT",
+    url: "/api/favorite/" + thisId,
+    data: {
+      // Value taken from title input
+      favorite: toggle
+    }
+  })
+    // With that done
+    .then(function(data) {
+      // Log the response
+      console.log(data);
+      location.reload();
+    });
+
 });

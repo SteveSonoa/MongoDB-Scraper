@@ -1,5 +1,5 @@
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
+$.getJSON("/api/articles", function(data) {
   var mid = 1;
 
   // For each one
@@ -24,7 +24,11 @@ $.getJSON("/articles", function(data) {
 
     // Populate the favorites bar with headlines
     if(data[i].favorite) {
-      $("#popular").append('<a href="article.html?id=' + data[i]._id + '"><h3 data-id="' + data[i].id + '">' + data[i].title + '</h3></a>')
+      $("#popular").append(
+        '<a href="article.html?id=' + data[i]._id + '">'
+      +    '<img src="' + data[i].image + '" class="img img-responsive pull-left marginRight" width="75" />'
+      +    '<h3 data-id="' + data[i].id + '">' + data[i].title + '</h3>'
+      +  '</a><br>');
     }
   }
 });
